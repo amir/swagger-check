@@ -54,6 +54,7 @@ object Definition {
           case Some("integer") => IntegerDefinition(format, minimum.map(_.longValue()), maximum.map(_.longValue()))
           case Some("number") => NumberDefinition(format, minimum.map(_.doubleValue()), maximum.map(_.doubleValue()))
           case Some("boolean") => BooleanDefinition
+          case None => ObjectDefinition(required, properties, additionalProperties.getOrElse(Left(true)))
           case _ if ref.isDefined => ReferenceDefinition(ref.get)
           case _ => EmptyDefinition
         }
